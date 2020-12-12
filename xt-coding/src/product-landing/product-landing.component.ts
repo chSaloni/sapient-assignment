@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ProductLandingService } from './product-landing.service';
-import { isNull } from 'lodash';
-import { Router } from '@angular/Router';
+import { isNull, isEmpty } from 'lodash';
+import { Router, ActivatedRoute } from '@angular/Router';
 
 export interface IProductStatus {
   name : string;
@@ -29,16 +29,48 @@ export class ProductLandingComponent implements OnInit {
     land_success: null
   };
   loading: boolean = true;
-  constructor(private productService: ProductLandingService, private _route: Router) { }
+  constructor(private productService: ProductLandingService, private _route: Router, private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.getlaunchYearFilters();
-    this.productService.getAllProducts().pipe().subscribe((response: any) => {
-      this.loading = false;
-      this.productListStatus = this.processProductresponse(response);
+    this._activatedRoute.queryParamMap.subscribe((param) => {
+      if (isEmpty(param['params'])) {
+       this.getAllProducts();
+      } else {
+        this.getSelectedproducts(param);
+      }
     });
   }
 
+  /**
+   * To fetch all products without any filter
+   */
+  getAllProducts() {
+    this.productService.getAllProducts().pipe().subscribe((response: any) => {
+      this.loading = false;
+      this.productListStatus = this.processProductresponse(response);
+    }, error => this.loading = false);
+  }
+
+ /**
+  * 
+  * @param param 
+  * To fetch selected products based on applied filter on UI
+  * Also sets the query params in the api url in service
+  */
+  getSelectedproducts(param: any) {
+    this.selectedFilters.launch_year = param.get('launch_year') === 'All' ? null : Number(param.get('launch_year'));
+        this.selectedFilters.launch_success = param.get('launch_success') === 'All' ? null : (param.get('launch_success') === "true" ? true : false);
+        this.selectedFilters.land_success = param.get('land_success') === 'All' ? null : (param.get('land_success') === "true" ? true : false);
+        this.productService.getFilteredResult(this.selectedFilters).pipe().subscribe((response: any) => {
+          this.loading = false;
+          this.productListStatus = this.processProductresponse(response);
+     });
+  }
+
+  /**
+   * Filter values for Launch year, starting from year 2006 till current year
+   */
   getlaunchYearFilters() {
     const currentYear = new Date().getFullYear();
     for (let year = 2006; year <= currentYear; year++) {
@@ -46,6 +78,11 @@ export class ProductLandingComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   * @param productRes 
+   * Transforms the API response to the desired Interface to be used on UI
+   */
   processProductresponse(productRes: any[]) : IProductStatus[]{
     let productStatsus = [] as IProductStatus[];
     productRes.forEach((res) => {
@@ -62,6 +99,15 @@ export class ProductLandingComponent implements OnInit {
     return productStatsus;
   }
 
+  /**
+   * 
+   * @param data 
+   * @param filterType 
+   * Applies selected filter
+   * Updated selected filter object
+   * Logic for toggle behaviour of filter
+   * Updates the url when filter is applied ̰
+   */
   applyFilter(data, filterType) {
     this.productListStatus = [];
     this.loading = true;
@@ -83,10 +129,6 @@ export class ProductLandingComponent implements OnInit {
         land_success: !isNull(this.selectedFilters.land_success) ? this.selectedFilters.land_success : 'All'
        }});
     }
-    this.productService.getFilteredResult(this.selectedFilters).pipe().subscribe((response: any) => {
-      this.loading = false;
-      this.productListStatus = this.processProductresponse(response);
-    });
   }
 
 }

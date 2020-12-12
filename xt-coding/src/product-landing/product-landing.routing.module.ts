@@ -5,18 +5,13 @@ import { ProductLandingComponent } from '../product-landing/product-landing.comp
 
 const routes: Routes = [
   {
-    path: 'products/:launch_year/:launch_success/:land_success',
-    canLoad: [],
-    component: ProductLandingComponent
-  },
-  {
     path: 'products',
     component: ProductLandingComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 
