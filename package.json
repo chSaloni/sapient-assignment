@@ -12,12 +12,14 @@
     "dev:ssr": "ng run xt-coding:serve-ssr",
     "serve:ssr": "node dist/xt-coding/server/main.js",
     "build:ssr": "ng build --prod && ng run xt-coding:server:production",
-    "prerender": "ng run xt-coding:prerender"
+    "prerender": "ng run xt-coding:prerender",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.0.3",
     "@angular/cli": "~11.0.3",
+    "@angular/compiler-cli": "~11.0.3",
     "@angular/common": "~11.0.3",
     "@angular/compiler": "~11.0.3",
     "@angular/core": "~11.0.3",
