@@ -18,7 +18,7 @@
 3. Run `npm install` for all dependencies
 4. To run the project `npm run dev:ssr`
 
-*Angular application will start on http://localhost:4200/ which will navigate you to http://localhost:4200/products*
+*Angular application will start on `http://localhost:4200/` which will navigate you to `http://localhost:4200/products`. The app will automatically reload if you change any of the source files.*
 
 ---
 
