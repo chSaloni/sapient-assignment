@@ -9,10 +9,10 @@
     ]
   },
   "files": [
-    "src/main.server.ts",
-    "server.ts"
+    "xt-coding/src/main.server.ts",
+    "xt-coding/server.ts"
   ],
   "angularCompilerOptions": {
-    "entryModule": "./src/app/app.server.module#AppServerModule"
+    "entryModule": "xt-coding/src/app/app.server.module#AppServerModule"
   }
 }
