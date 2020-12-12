@@ -1,15 +1,17 @@
 {
-  "name": "xt-coding",
+  "name": "xt-space-launch",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "start": "node server.js",
+    "build": "ng build",
     "heroku-postbuild": "ng build --prod",
-    "start": "ng run xt-coding:serve-ssr",
-    "serve": "node dist/xt-coding/server/main.js",
-    "build": "ng build --prod && ng run xt-coding:server:production",
+    "dev:ssr": "ng run xt-coding:serve-ssr",
+    "serve:ssr": "node dist/xt-coding/server/main.js",
+    "build:ssr": "ng build --prod && ng run xt-coding:server:production",
     "prerender": "ng run xt-coding:prerender"
   },
   "private": true,
