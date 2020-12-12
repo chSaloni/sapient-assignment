@@ -9,6 +9,7 @@
     "start": "node server.js",
     "build": "ng build",
     "heroku-postbuild": "ng build --prod",
+    "postinstall": "ng build --aot -prod",
     "dev:ssr": "ng run xt-coding:serve-ssr",
     "serve:ssr": "node dist/xt-coding/server/main.js",
     "build:ssr": "ng build --prod && ng run xt-coding:server:production",
@@ -16,6 +17,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "~11.0.3",
     "@angular/animations": "~11.0.3",
     "@angular/common": "~11.0.3",
     "@angular/compiler": "~11.0.3",
