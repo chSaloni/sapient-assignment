@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ProductLandingService } from './product-landing.service';
 import { isNull, isEmpty } from 'lodash';
-import { Router, ActivatedRoute } from '@angular/Router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 export interface IProductStatus {
   name : string;
