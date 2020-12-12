@@ -6,14 +6,13 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod",
     "build": "ng build",
-    "start": "node server.js",
+    "start": "node dist/xt-coding/server/main.js",
     "dev:ssr": "ng run xt-coding:serve-ssr",
     "serve:ssr": "node dist/xt-coding/server/main.js",
     "build:ssr": "ng build --prod && ng run xt-coding:server:production",
     "prerender": "ng run xt-coding:prerender",
-    "heroku-postbuild": "ng build --prod"
+    "postinstall": "npm run build:ssr"
   },
   "private": true,
   "dependencies": {
