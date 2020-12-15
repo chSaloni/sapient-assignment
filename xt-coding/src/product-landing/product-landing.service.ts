@@ -20,7 +20,6 @@ export class ProductLandingService {
                 url += '&'+filter+'='+selectedFilters[filter];
             }
         });
-        console.log(url);
         return this.http.get(url);
     }
 }
