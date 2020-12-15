@@ -1,6 +1,6 @@
 ## Live Demo
 
-[Xt-Coding](https://xt-space-assignment.herokuapp.com/products) 
+[Xt-Coding](https://xt-space-launch.herokuapp.com/products) 
 
 ---
 
@@ -9,7 +9,7 @@
 1. **Angular 11** Framework
 2. **HTML/CSS** for design (**Media Query** for Responsiveness)
 3. **Server Side rendering** implementation
-4. Deployement on **Heroku** `https://xt-space-assignment.herokuapp.com/products`
+4. Deployement on **Heroku** `https://xt-space-launch.herokuapp.com/products`
 
 
 ## Pre Requisites to run the application locally
