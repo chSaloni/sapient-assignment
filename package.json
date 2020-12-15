@@ -7,6 +7,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build": "ng build",
+    "app": "ng serve",
     "start": "node dist/xt-coding/server/main.js",
     "dev:ssr": "ng run xt-coding:serve-ssr",
     "serve:ssr": "node dist/xt-coding/server/main.js",

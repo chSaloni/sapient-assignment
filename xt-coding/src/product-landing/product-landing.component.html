@@ -1,86 +1,91 @@
 <div class="flex-fill-grow container">
-<div class="d-flex align-items-center-justify-content-between section">
-  <h2>Space X Launch Program</h2>
-  <div class="clearfix">
-    <div class="section-body">
-        <div class="row">
-          <div class="col-2 px-1">
+  <div class="d-flex align-items-center-justify-content-between section">
+    <h2>Space X Launch Program</h2>
+    <div class="clearfix">
+      <div class="section-body">
+        <div class="d-flex flex-wrap">
+          <div class="px-1 filter-panel">
             <div class="card p-3 d-block mb-4">
               <h6 class="card-title font-weight-bold">Filters</h6>
               <p class="card-text text-center filter-section">Launch Year</p>
               <hr>
-              <div class="row">
-             <ng-container *ngFor="let launchYear of launchYearFilterOptions">
-               <div class="col">
-                <button aria-label="Launch year filter button" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(launchYear, 'launch_year')" [ngClass]="{'button-active': selectedFilters.launch_year !== null && selectedFilters.launch_year === launchYear}">{{launchYear}}</button>
-               </div>
-             </ng-container>
-            </div>
-            <p class="card-text text-center filter-section">Successful Launch</p>
+              <div class="d-flex flex-wrap">
+                <ng-container *ngFor="let launchYear of launchYearFilterOptions">
+                  <div class="w-50">
+                    <button aria-label="Launch year filter button" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(launchYear, 'launch_year')"
+                      [ngClass]="{'button-active': selectedFilters.launch_year !== null && selectedFilters.launch_year === launchYear}">{{launchYear}}</button>
+                  </div>
+                </ng-container>
+              </div>
+              <p class="card-text text-center filter-section">Successful Launch</p>
               <hr>
-              <div class="row">
-                <div class="col">
-                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(true, 'launch_success')" [ngClass]="{'button-active': selectedFilters.launch_success !== null && selectedFilters.launch_success}">True</button>
-                 </div>
-                 <div class="col">
-                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(false, 'launch_success')" [ngClass]="{'button-active': selectedFilters.launch_success !== null && !selectedFilters.launch_success}">False</button>
-                 </div>
+              <div class="d-flex">
+                <div class="w-50">
+                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(true, 'launch_success')"
+                    [ngClass]="{'button-active': selectedFilters.launch_success !== null && selectedFilters.launch_success}">True</button>
+                </div>
+                <div class="w-50">
+                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(false, 'launch_success')"
+                    [ngClass]="{'button-active': selectedFilters.launch_success !== null && !selectedFilters.launch_success}">False</button>
+                </div>
               </div>
               <p class="card-text text-center filter-section">Successful Landing</p>
               <hr>
-              <div class="row">
-                <div class="col">
-                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(true, 'land_success')" [ngClass]="{'button-active': selectedFilters.land_success !== null && selectedFilters.land_success}">True</button>
-                 </div>
-                 <div class="col">
-                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(false, 'land_success')" [ngClass]="{'button-active': selectedFilters.land_success !== null && !selectedFilters.land_success}">False</button>
-                 </div>
+              <div class="d-flex">
+                <div class="w-50">
+                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(true, 'land_success')"
+                    [ngClass]="{'button-active': selectedFilters.land_success !== null && selectedFilters.land_success}">True</button>
+                </div>
+                <div class="w-50">
+                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(false, 'land_success')"
+                    [ngClass]="{'button-active': selectedFilters.land_success !== null && !selectedFilters.land_success}">False</button>
+                </div>
               </div>
             </div>
           </div>
-          <div *ngIf="loading" class="d-flex col-10 justify-content-center align-items-center bg-white">
+          <div *ngIf="loading" class="d-flex product-panel justify-content-center align-items-center bg-white">
             <div class="spinner-border" role="status">
               <span class="sr-only">Loading...</span>
             </div>
             <span class="ml-2">Loading...</span>
           </div>
-          <div *ngIf="!loading && !productListStatus.length" class=" d-flex justify-content-center bg-white align-items-center col-10"> 
+          <div *ngIf="!loading && !productListStatus.length" class="d-flex justify-content-center bg-white align-items-center product-panel">
             <h2>No Record found</h2>
           </div>
-        <div *ngIf="productListStatus.length" class="col-10">
-          <div class="row">
-              <ng-container *ngFor= "let product of productListStatus">
+          <div *ngIf="productListStatus.length" class="product-panel">
+            <div class="d-flex flex-wrap">
+              <ng-container *ngFor="let product of productListStatus">
                 <div class="column px-1">
-                <div class="card p-3 d-block mb-4 product-card">
-                  <img class="card-img-top card-img-bg" [src]="product.imageLink" height="200" width="130" alt="Card image">
-                  <div class="card-body">
-                    <p class="card-title product-title text-info">{{product.name}} #{{product.id}}</p>
-                    <div class="card-text">
-                      <div class="d-flex">
-                        <p class="product-title font-weight-bold">Launch Year:&nbsp;</p>
-                        <p class="text-info product-title  font-weight-light">{{product.launchYear}}</p>
-                      </div>
-                      <div class="d-flex">
-                        <p class="product-title font-weight-bold">Successful Launch:&nbsp;</p>
-                        <p class="text-info product-title  font-weight-light">{{product.launchSuccess}}</p>
-                      </div>
-                      <div class="d-flex">
-                        <p class="product-title font-weight-bold">Successful Landing:&nbsp;</p>
-                        <p class="text-info product-title  font-weight-light">{{product.landSuccess}}</p>
+                  <div class="card p-3 d-block mb-4 product-card">
+                    <img class="card-img-top card-img-bg" [src]="product.imageLink" height="200" width="130" alt="Card image">
+                    <div class="card-body">
+                      <p class="card-title product-title text-info">{{product.name}} #{{product.id}}</p>
+                      <div class="card-text">
+                        <div class="d-flex">
+                          <p class="product-title font-weight-bold">Launch Year:&nbsp;</p>
+                          <p class="text-info product-title  font-weight-light">{{product.launchYear}}</p>
+                        </div>
+                        <div class="d-flex">
+                          <p class="product-title font-weight-bold">Successful Launch:&nbsp;</p>
+                          <p class="text-info product-title  font-weight-light">{{product.launchSuccess}}</p>
+                        </div>
+                        <div class="d-flex">
+                          <p class="product-title font-weight-bold">Successful Landing:&nbsp;</p>
+                          <p class="text-info product-title  font-weight-light">{{product.landSuccess}}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </ng-container>
             </div>
-            </ng-container>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <h5 class="font-weight-bold"> Developed By:</h5>
+      <h5>Saloni Choudhary</h5>
     </div>
   </div>
-    </div>
-  </div> 
-  <div class="d-flex justify-content-center">
-    <h5 class="font-weight-bold"> Developed By:</h5>
-    <h5>Saloni Choudhary</h5>
-  </div>
-</div>
 </div>
