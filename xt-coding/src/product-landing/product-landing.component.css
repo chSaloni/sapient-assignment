@@ -96,7 +96,6 @@
   
   /* Desktop View: Page should have 4 columns between 1024 and 1440 px and above.  */
   @media only screen and (min-width: 1024px) and (max-width: 1440px) {
-    /* .example {background: pink;} */
     .column {
         width: 25%;
     }
@@ -112,7 +111,6 @@
   }
 
   @media only screen and (min-width: 1440px) {
-    /* .example {background: pink;} */
     .column {
         width: 25%;
     }

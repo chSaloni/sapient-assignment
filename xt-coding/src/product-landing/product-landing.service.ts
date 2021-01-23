@@ -8,18 +8,15 @@ export class ProductLandingService {
 
     }
 
-    getAllProducts() {
-        const url = "https://api.spacexdata.com/v3/launches?limit=100";
-        return this.http.get(url);
-    }
-
-    getFilteredResult(selectedFilters: any) {
-        let url = 'https://api.spacexdata.com/v3/launches?limit=100'
-        Object.keys(selectedFilters).forEach((filter) => {
-            if(!isNull(selectedFilters[filter])) {
-                url += '&'+filter+'='+selectedFilters[filter];
-            }
-        });
+    getAllProducts(selectedFilters?: any) {
+        let url = "https://api.spacexdata.com/v3/launches?limit=100";
+        if(selectedFilters) {
+            Object.keys(selectedFilters).forEach((filter) => {
+                if(!isNull(selectedFilters[filter])) {
+                    url += '&'+filter+'='+selectedFilters[filter];
+                }
+            });
+        }
         return this.http.get(url);
     }
 }
