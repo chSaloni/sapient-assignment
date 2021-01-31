@@ -4,6 +4,7 @@ import { map, catchError } from 'rxjs/operators';
 import { ProductLandingService } from './product-landing.service';
 import { isNull, isEmpty } from 'lodash';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 
 export interface IProductStatus {
   name : string;
@@ -24,9 +25,9 @@ export class ProductLandingComponent implements OnInit {
   productListStatus: IProductStatus[] = [];
   launchYearFilterOptions: Array<number> = [];
   selectedFilters = {
-    launch_year: null,
-    launch_success: null,
-    land_success: null
+    launchYear: null,
+    launchSuccess: null,
+    landingSuccess: null
   };
   loading: boolean = true;
   constructor(private productService: ProductLandingService, private _route: Router, private _activatedRoute: ActivatedRoute) { }
@@ -59,10 +60,10 @@ export class ProductLandingComponent implements OnInit {
   * Also sets the query params in the api url in service
   */
   getSelectedproducts(param: any) {
-    this.selectedFilters.launch_year = param.get('launch_year') === 'All' ? null : Number(param.get('launch_year'));
-        this.selectedFilters.launch_success = param.get('launch_success') === 'All' ? null : (param.get('launch_success') === "true" ? true : false);
-        this.selectedFilters.land_success = param.get('land_success') === 'All' ? null : (param.get('land_success') === "true" ? true : false);
-        this.productService.getAllProducts(this.selectedFilters).pipe().subscribe((response: any) => {
+    this.selectedFilters.launchYear = param.get('launchYear') === 'All' ? null : Number(param.get('launchYear'));
+        this.selectedFilters.launchSuccess = param.get('launchSuccess') === 'All' ? null : (param.get('launchSuccess') === "true" ? true : false);
+        this.selectedFilters.landingSuccess = param.get('landingSuccess') === 'All' ? null : (param.get('landSuccess') === "true" ? true : false);
+        this.productService.getSelectedProducts(this.selectedFilters).pipe().subscribe((response: any) => {
           this.loading = false;
           this.productListStatus = this.processProductresponse(response);
      });
@@ -83,16 +84,17 @@ export class ProductLandingComponent implements OnInit {
    * @param productRes 
    * Transforms the API response to the desired Interface to be used on UI
    */
-  processProductresponse(productRes: any[]) : IProductStatus[]{
+  processProductresponse(productRes: any) : IProductStatus[]{
     let productStatsus = [] as IProductStatus[];
-    productRes.forEach((res) => {
+    const items = productRes.docs ?  productRes.docs : productRes;
+    items.forEach((res) => {
       const productStatusObj = {
-        name: res.mission_name,
+        name: res.name,
         id: res.flight_number,
-        launchYear: res.launch_year,
-        launchSuccess: res.launch_success ? true : false,
-        landSuccess: res.rocket.first_stage.cores[0].land_success ? true : false,
-        imageLink: res.links.mission_patch
+        launchYear: Number(moment(res.date_utc).format('YYYY').valueOf()),
+        launchSuccess: res.success ? true : false,
+        landSuccess: res.cores[0].landing_success ? true : false,
+        imageLink: res.links.patch.small ? res.links.patch.small : 'assets/No_image_available.svg'
       } as IProductStatus;
       productStatsus.push(productStatusObj);
     });
@@ -121,12 +123,12 @@ export class ProductLandingComponent implements OnInit {
       }
     }
     if(Object.values(this.selectedFilters).every((filter) => isNull(filter))) {
-      this._route.navigate(['/products']);
+      this._route.navigate(['/spaceXLaunch']);
     } else {
-       this._route.navigate(['/products'], { queryParams: {
-        launch_year:  !isNull(this.selectedFilters.launch_year) ? this.selectedFilters.launch_year : 'All',
-        launch_success: !isNull(this.selectedFilters.launch_success) ? this.selectedFilters.launch_success : 'All',
-        land_success: !isNull(this.selectedFilters.land_success) ? this.selectedFilters.land_success : 'All'
+       this._route.navigate(['/spaceXLaunch'], { queryParams: {
+        launchYear:  !isNull(this.selectedFilters.launchYear) ? this.selectedFilters.launchYear : 'All',
+        launchSuccess: !isNull(this.selectedFilters.launchSuccess) ? this.selectedFilters.launchSuccess : 'All',
+        landingSuccess: !isNull(this.selectedFilters.landingSuccess) ? this.selectedFilters.landingSuccess : 'All'
        }});
     }
   }

@@ -19,9 +19,9 @@
   "dependencies": {
     "@angular/animations": "~11.0.3",
     "@angular/cli": "~11.0.3",
-    "@angular/compiler-cli": "~11.0.3",
     "@angular/common": "~11.0.3",
     "@angular/compiler": "~11.0.3",
+    "@angular/compiler-cli": "~11.0.3",
     "@angular/core": "~11.0.3",
     "@angular/forms": "~11.0.3",
     "@angular/localize": "~11.0.3",
@@ -34,6 +34,7 @@
     "bootstrap": "^4.5.0",
     "express": "^4.17.1",
     "lodash": "^4.17.20",
+    "moment": "^2.29.1",
     "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

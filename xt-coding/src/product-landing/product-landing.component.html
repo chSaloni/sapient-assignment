@@ -12,8 +12,8 @@
               <div class="d-flex flex-wrap">
                 <ng-container *ngFor="let launchYear of launchYearFilterOptions">
                   <div class="w-50">
-                    <button aria-label="Launch year filter button" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(launchYear, 'launch_year')"
-                      [ngClass]="{'button-active': selectedFilters.launch_year !== null && selectedFilters.launch_year === launchYear}">{{launchYear}}</button>
+                    <button aria-label="Launch year filter button" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(launchYear, 'launchYear')"
+                      [ngClass]="{'button-active': selectedFilters.launchYear !== null && selectedFilters.launchYear === launchYear}">{{launchYear}}</button>
                   </div>
                 </ng-container>
               </div>
@@ -21,24 +21,24 @@
               <hr>
               <div class="d-flex">
                 <div class="w-50">
-                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(true, 'launch_success')"
-                    [ngClass]="{'button-active': selectedFilters.launch_success !== null && selectedFilters.launch_success}">True</button>
+                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(true, 'launchSuccess')"
+                    [ngClass]="{'button-active': selectedFilters.launchSuccess !== null && selectedFilters.launchSuccess}">True</button>
                 </div>
                 <div class="w-50">
-                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(false, 'launch_success')"
-                    [ngClass]="{'button-active': selectedFilters.launch_success !== null && !selectedFilters.launch_success}">False</button>
+                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(false, 'launchSuccess')"
+                    [ngClass]="{'button-active': selectedFilters.launchSuccess !== null && !selectedFilters.launchSuccess}">False</button>
                 </div>
               </div>
               <p class="card-text text-center filter-section">Successful Landing</p>
               <hr>
               <div class="d-flex">
                 <div class="w-50">
-                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(true, 'land_success')"
-                    [ngClass]="{'button-active': selectedFilters.land_success !== null && selectedFilters.land_success}">True</button>
+                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(true, 'landingSuccess')"
+                    [ngClass]="{'button-active': selectedFilters.landingSuccess !== null && selectedFilters.landingSuccess}">True</button>
                 </div>
                 <div class="w-50">
-                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(false, 'land_success')"
-                    [ngClass]="{'button-active': selectedFilters.land_success !== null && !selectedFilters.land_success}">False</button>
+                  <button aria-label="True" type="button" class="btn btn-success mb-2 filterButtons" (click)="applyFilter(false, 'landingSuccess')"
+                    [ngClass]="{'button-active': selectedFilters.landingSuccess !== null && !selectedFilters.landingSuccess}">False</button>
                 </div>
               </div>
             </div>
@@ -55,23 +55,23 @@
           <div *ngIf="productListStatus.length" class="product-panel">
             <div class="d-flex flex-wrap">
               <ng-container *ngFor="let product of productListStatus">
-                <div class="column px-1">
+                <div class="launch-card-col px-1">
                   <div class="card p-3 d-block mb-4 product-card">
                     <img class="card-img-top card-img-bg" [src]="product.imageLink" height="200" width="130" alt="Card image">
                     <div class="card-body">
-                      <p class="card-title product-title text-info">{{product.name}} #{{product.id}}</p>
+                      <p class="card-title product-title text-primary">{{product.name}} #{{product.id}}</p>
                       <div class="card-text">
                         <div class="d-flex">
                           <p class="product-title font-weight-bold">Launch Year:&nbsp;</p>
-                          <p class="text-info product-title  font-weight-light">{{product.launchYear}}</p>
+                          <p class="text-primary product-title  font-weight-light">{{product.launchYear}}</p>
                         </div>
                         <div class="d-flex">
                           <p class="product-title font-weight-bold">Successful Launch:&nbsp;</p>
-                          <p class="text-info product-title  font-weight-light">{{product.launchSuccess}}</p>
+                          <p class="text-primary product-title  font-weight-light">{{product.launchSuccess}}</p>
                         </div>
                         <div class="d-flex">
                           <p class="product-title font-weight-bold">Successful Landing:&nbsp;</p>
-                          <p class="text-info product-title  font-weight-light">{{product.landSuccess}}</p>
+                          <p class="text-primary product-title  font-weight-light">{{product.landSuccess}}</p>
                         </div>
                       </div>
                     </div>
@@ -85,7 +85,7 @@
     </div>
     <div class="d-flex justify-content-center">
       <h5 class="font-weight-bold"> Developed By:</h5>
-      <h5>Saloni Choudhary</h5>
+      <h5>Parth Chauhan</h5>
     </div>
   </div>
 </div>

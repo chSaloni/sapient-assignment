@@ -19,7 +19,8 @@
 }
 
 .product-card {
-    max-height: 400px !important;
+    max-height: 420px !important;
+    min-height: 420px !important;
 }
 
 .product-title {
@@ -35,6 +36,10 @@
 .filter-section {
     margin-bottom: -15px;
     font-size: 0.75rem;
+}
+
+.card-body {
+    padding: 0.25rem !important;
 }
 
 .card-img-bg {
@@ -64,9 +69,9 @@
     text-align: center;
 }
 
-  /* Mobile View: Page should have only one Column until 700 px.  */
+  /* Mobile View: 1 column layout until 700 px. */
   @media only screen and (max-width: 700px) {
-    .column {
+    .launch-card-col {
         width: 100%;
     }
     .filter-panel {
@@ -78,9 +83,9 @@
   }
 
   
-  /* Tablet View: Page should have 2 columns between 700 and 1024 px */
+  /* Tablet/Laptop View: 2 column layout between 700px and 1024px */
   @media only screen and (min-width: 700px) and (max-width: 1024px) {
-    .column {
+    .launch-card-col {
         width: 50%;
     }
     .filter-panel {
@@ -94,9 +99,9 @@
     }
   } 
   
-  /* Desktop View: Page should have 4 columns between 1024 and 1440 px and above.  */
+  /* Desktop View: 4 column layout between 1024px and 1440px  */
   @media only screen and (min-width: 1024px) and (max-width: 1440px) {
-    .column {
+    .launch-card-col {
         width: 25%;
     }
     .filter-panel {
@@ -109,9 +114,10 @@
         margin-left: 30px;
     }
   }
-
+  
+  /* Desktop View: 4 column layout above 1440px */
   @media only screen and (min-width: 1440px) {
-    .column {
+    .launch-card-col {
         width: 25%;
     }
     .filter-panel {

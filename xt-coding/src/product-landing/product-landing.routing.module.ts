@@ -5,7 +5,7 @@ import { ProductLandingComponent } from '../product-landing/product-landing.comp
 
 const routes: Routes = [
   {
-    path: 'products',
+    path: 'spaceXLaunch',
     component: ProductLandingComponent
   }
 ];

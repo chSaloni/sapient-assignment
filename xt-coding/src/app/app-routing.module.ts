@@ -6,12 +6,12 @@ import { ProductLandingComponent } from '../product-landing/product-landing.comp
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/products',
+    redirectTo: '/spaceXLaunch',
     pathMatch: 'full',
     canLoad: []
   },
   {
-    path: 'products',
+    path: 'spaceXLaunch',
     component: ProductLandingComponent
   }
 ];
